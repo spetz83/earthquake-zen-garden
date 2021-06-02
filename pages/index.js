@@ -1,11 +1,8 @@
 import styles from "../styles/Home.module.css";
-import { promises as fs } from "fs";
-import path from "path";
+import getData from "../data/data";
 
 export async function getStaticProps() {
-  const filePath = path.join(process.cwd(), "data", "data.json");
-  const jsonData = await fs.readFile(filePath, "utf8");
-  const data = JSON.parse(jsonData);
+  const data = await getData();
   return { props: { siteData: data } };
 }
 
