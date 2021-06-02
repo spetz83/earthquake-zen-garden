@@ -3,7 +3,7 @@ import SiteLayout from "../layouts/siteLayout";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <SiteLayout>
+    <SiteLayout {...pageProps}>
       <Component {...pageProps} />
     </SiteLayout>
   );
