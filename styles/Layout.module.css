@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ededed;
+    color: #777777;
+    padding: 0 25px 0 25px;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 100vh;
+    width: 50vw;
+}
