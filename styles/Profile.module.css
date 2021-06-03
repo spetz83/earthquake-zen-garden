@@ -5,13 +5,12 @@
 }
 
 .row {
-    height: 100vh;
     width: 15vw;
 }
 
 .midRow {
-    height: 100vh;
     width: 5vw;
+    margin-left: 20px;
 }
 
 .profileContainer ul {
@@ -20,6 +19,7 @@
 
 .profileContainer ul li {
     padding-bottom: 20px;
+    font-weight: bold;
 }
 
 

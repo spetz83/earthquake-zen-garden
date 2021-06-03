@@ -13,10 +13,19 @@ a:visited {
   color: #6600cc;
 }
 
-* {
-  box-sizing: border-box;
+h1 {
+  color: #444444;
 }
 
 .content-container {
   text-align: center;
+}
+
+.headerList {
+  padding-inline-start: 0;
+  color: #444444;
+}
+
+.detailList {
+  color: #777777;
 }

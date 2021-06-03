@@ -1,0 +1,20 @@
+.detailsContainer {
+    display: flex;
+    text-align: left;
+}
+
+.detailsContainer ul {
+    list-style-type: none;
+}
+
+.detailsContainer ul li {
+    padding-bottom: 10px;
+    font-weight: bold;
+}
+
+.profileContainer {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+}

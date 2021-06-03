@@ -18,7 +18,7 @@ export default function ProfilePage() {
           />
         </div>
         <div className={styles.midRow}>
-          <ul>
+          <ul className="headerList">
             <li>First name</li>
             <li>Last name</li>
             <li>Phone</li>
@@ -27,7 +27,7 @@ export default function ProfilePage() {
           </ul>
         </div>
         <div className={styles.row}>
-          <ul className={styles.detailList}>
+          <ul className="detailList">
             <li>{profile.firstName}</li>
             <li>{profile.lastName}</li>
             <li>{profile.phone}</li>

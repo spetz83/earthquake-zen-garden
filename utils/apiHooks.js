@@ -29,6 +29,15 @@ export function useQuakes() {
   };
 }
 
+export function useQuake(id) {
+  const { data, error } = useSWR(`/api/quakes/${id}`, fetcher);
+  return {
+    quake: data,
+    isQuakeLoading: !error && !data,
+    isQuakeError: error,
+  };
+}
+
 export function useProfile() {
   const { data, error } = useSWR("/api/profiles", fetcher);
   return {

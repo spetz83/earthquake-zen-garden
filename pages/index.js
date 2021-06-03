@@ -1,4 +1,3 @@
-import styles from "../styles/Home.module.css";
 import MaterialTable from "@material-table/core";
 import Link from "next/link";
 import { DateTime } from "luxon";
