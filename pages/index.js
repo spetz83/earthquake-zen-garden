@@ -1,52 +1,56 @@
 import styles from "../styles/Home.module.css";
-import getData from "../data/data";
-
-export async function getStaticProps() {
-  const data = await getData();
-  return { props: { siteData: data } };
-}
+import MaterialTable from "@material-table/core";
+import Link from "next/link";
+import { DateTime } from "luxon";
+import { getDate } from "../utils/dates";
+import { useMeta, useQuakes } from "../utils/apiHooks";
 
 export default function Home(props) {
-  const { site } = props.siteData;
-  console.log(site);
+  const { quakes, isQuakesLoading, isQuakesError } = useQuakes();
+  const { meta, isMetaLoading, isMetaError } = useMeta();
+
+  const isError = isQuakesError || isMetaError;
+  const isLoading = isQuakesLoading || isMetaLoading;
+
+  if (isError) {
+    return <h1>Failed to Load</h1>;
+  }
+
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
+
+  const linkRenderer = (row) => {
+    return (
+      <Link href={`/quakes/${row.id}`}>
+        <a>{row.properties.place}</a>
+      </Link>
+    );
+  };
+
+  const dateTimeRenderer = (row) => {
+    return getDate(row).toLocaleString(DateTime.DATETIME_MED);
+  };
+
+  const columns = [
+    { field: "properties.place", title: "Title", render: linkRenderer },
+    { field: "properties.mag", title: "Magnitude" },
+    { field: "properties.time", title: "Time", render: dateTimeRenderer },
+  ];
+
   return (
-    <>
-      <h1 className={styles.title}>
-        Welcome to <a href="https://nextjs.org">Next.js!</a>
-      </h1>
-
-      <p className={styles.description}>
-        Get started by editing{" "}
-        <code className={styles.code}>pages/index.js</code>
-      </p>
-
-      <div className={styles.grid}>
-        <a href="https://nextjs.org/docs" className={styles.card}>
-          <h2>Documentation &rarr;</h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a href="https://nextjs.org/learn" className={styles.card}>
-          <h2>Learn &rarr;</h2>
-          <p>Learn about Next.js in an interactive course with quizzes!</p>
-        </a>
-
-        <a
-          href="https://github.com/vercel/next.js/tree/master/examples"
-          className={styles.card}
-        >
-          <h2>Examples &rarr;</h2>
-          <p>Discover and deploy boilerplate example Next.js projects.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          className={styles.card}
-        >
-          <h2>Deploy &rarr;</h2>
-          <p>Instantly deploy your Next.js site to a public URL with Vercel.</p>
-        </a>
-      </div>
-    </>
+    <div className="content-container">
+      <h1>{meta.title}</h1>
+      <MaterialTable
+        columns={columns}
+        data={quakes}
+        options={{
+          paging: false,
+          search: false,
+          toolbar: false,
+          sorting: true,
+        }}
+      />
+    </div>
   );
 }
