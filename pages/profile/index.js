@@ -5,6 +5,14 @@ import Image from "next/image";
 export default function ProfilePage() {
   const { profile, isProfileLoading, isProfileError } = useProfile();
 
+  if (isProfileLoading) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (isProfileError) {
+    return <h1>Failed to Load</h1>;
+  }
+
   return (
     <div className="content-container">
       <h1>Profile</h1>

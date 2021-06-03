@@ -2,7 +2,7 @@ import styles from "../styles/Layout.module.css";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { useDetails, useMeta, useProfile } from "../utils/apiHooks";
+import { useDetails, useProfile } from "../utils/apiHooks";
 
 const SiteLayout = (props) => {
   const { details, isDetailsLoading, isDetailsError } = useDetails();
